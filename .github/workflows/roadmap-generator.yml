@@ -18,12 +18,13 @@ jobs:
           const generateRoadmap = require('./.github/scripts/generate-roadmap.js');  
           await generateRoadmap({github, context});  
   
-    - name: Commit and push changes
+    - name: Commit and push changes  
       env:  
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
       run: |  
         git config --global user.name "GitHub Actions"  
         git config --global user.email "actions@github.com"  
+        git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}.git  
         git add ROADMAP.md  
         git diff --quiet && git diff --staged --quiet || git commit -m "Update ROADMAP.md"  
         git push  
