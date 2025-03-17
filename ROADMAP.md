@@ -8,4 +8,5 @@
 - [Something I'm Working On](https://github.com/rawkintrevo/roadmap-maker/issues/2)
 
 ## In the Roadmap 📅
+- [Issues with a roadmap label will be included event if they're docs and/or bugs](https://github.com/rawkintrevo/roadmap-maker/issues/9)
 - [Tell your friends](https://github.com/rawkintrevo/roadmap-maker/issues/1)
