@@ -1,6 +1,7 @@
 # Project Roadmap
 
 ## Complete ✅
+- [Update README.md](https://github.com/rawkintrevo/roadmap-maker/pull/6)
 - [Update README.md](https://github.com/rawkintrevo/roadmap-maker/pull/4)
 
 ## Under Construction 🚧
