@@ -14,7 +14,9 @@ jobs:
     - name: Generate ROADMAP.md  
       uses: actions/github-script@v7  
       with:  
-        script: .github/scripts/generate-roadmap.js  
+        script: |  
+          const generateRoadmap = require('./.github/scripts/generate-roadmap.js');  
+          await generateRoadmap({github, context});  
   
     - name: Commit and push changes  
       run: |  
