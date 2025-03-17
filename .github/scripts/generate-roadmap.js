@@ -1,4 +1,8 @@
 module.exports = async ({github, context}) => {  
+  // Configuration  
+  const ignoreLabels = ['bug', 'docs']; // Labels to ignore  
+  const roadmapLabel = 'roadmap'; // Special label that overrides ignoreLabels  
+  
   // Fetch both issues and pull requests  
   const { data: items } = await github.rest.issues.listForRepo({  
     owner: context.repo.owner,  
@@ -35,9 +39,16 @@ module.exports = async ({github, context}) => {
       continue;  
     }  
   
-    // Skip bug/docs labeled issues  
+    // Get labels in lowercase  
     const labels = item.labels.map(label => label.name.toLowerCase());  
-    if (labels.includes('bug') || labels.includes('docs')) continue;  
+  
+    // Check if the issue has the roadmap label  
+    const hasRoadmapLabel = labels.includes(roadmapLabel);  
+  
+    // Skip if the issue has an ignore label and doesn't have the roadmap label  
+    if (!hasRoadmapLabel && labels.some(label => ignoreLabels.includes(label))) {  
+      continue;  
+    }  
   
     // Categorize open issues  
     if (item.assignees?.length > 0) {  
