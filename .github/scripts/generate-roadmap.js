@@ -1,4 +1,5 @@
 module.exports = async ({github, context}) => {  
+  // Fetch both issues and pull requests  
   const { data: items } = await github.rest.issues.listForRepo({  
     owner: context.repo.owner,  
     repo: context.repo.repo,  
@@ -9,9 +10,16 @@ module.exports = async ({github, context}) => {
   const roadmap = { complete: [], underConstruction: [], inRoadmap: [] };  
   
   for (const item of items) {  
-    // Handle merged pull requests  
+    // Handle pull requests  
     if (item.pull_request) {  
-      if (item.merged_at) {  
+      // Check if the PR is merged  
+      const { data: pr } = await github.rest.pulls.get({  
+        owner: context.repo.owner,  
+        repo: context.repo.repo,  
+        pull_number: item.number,  
+      });  
+        
+      if (pr.merged) {  
         roadmap.complete.push({  
           title: item.title,  
           url: item.html_url,  
@@ -21,8 +29,11 @@ module.exports = async ({github, context}) => {
       continue;  
     }  
   
-    // Skip closed issues  
-    if (item.state === 'closed') continue;  
+    // Handle issues  
+    if (item.state === 'closed') {  
+      // Skip closed issues that aren't merged PRs  
+      continue;  
+    }  
   
     // Skip bug/docs labeled issues  
     const labels = item.labels.map(label => label.name.toLowerCase());  
