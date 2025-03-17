@@ -1,8 +1,7 @@
 # Project Roadmap
 
 ## Complete ✅
-No completed items
-
+- [Update README.md](https://github.com/rawkintrevo/roadmap-maker/pull/4)
 
 ## Under Construction 🚧
 - [Something I'm Working On](https://github.com/rawkintrevo/roadmap-maker/issues/2)
