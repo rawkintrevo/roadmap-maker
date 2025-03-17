@@ -1,0 +1,25 @@
+name: Generate Roadmap  
+on:  
+  schedule:  
+    - cron: '0 0 * * 1' # Runs every Monday at 00:00 UTC  
+  workflow_dispatch:  
+  
+jobs:  
+  generate-roadmap:  
+    runs-on: ubuntu-latest  
+    steps:  
+    - name: Checkout repository  
+      uses: actions/checkout@v4  
+  
+    - name: Generate ROADMAP.md  
+      uses: actions/github-script@v7  
+      with:  
+        script: .github/scripts/generate-roadmap.js  
+  
+    - name: Commit and push changes  
+      run: |  
+        git config --global user.name "GitHub Actions"  
+        git config --global user.email "actions@github.com"  
+        git add ROADMAP.md  
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update ROADMAP.md"  
+        git push  
