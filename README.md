@@ -8,4 +8,4 @@ To Install
 
 The 'Completed' Thing is based on the PR title, not the issue title. 
 
-Issues labeled `bug` will not be added to the roadmap
+Issues labeled `bug` or `docs` (confifurable) will not be added to the roadmap, unless the label `roadmap` is also added. 
