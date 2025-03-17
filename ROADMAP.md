@@ -5,8 +5,7 @@ No completed items
 
 
 ## Under Construction 🚧
-No items in progress
-
+- [Something I'm Working On](https://github.com/rawkintrevo/roadmap-maker/issues/2)
 
 ## In the Roadmap 📅
 - [Tell your friends](https://github.com/rawkintrevo/roadmap-maker/issues/1)
